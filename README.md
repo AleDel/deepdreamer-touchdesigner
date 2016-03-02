@@ -31,5 +31,7 @@ pip install protobuf==3.0.0b
 you only need to add the path to the folder "python Caffe" to the system variable "PYTHONPATH"
 
 ## Config Touchdesigner
-in preferences, Python module path add path to *path/to/Anaconda/envs/py33/Lib/site-packages*
+* in preferences, Python module path add path to *path/to/Anaconda/envs/py33/Lib/site-packages*.
+* Touchdesigner use numpy 7 but caffe need version 9
+  * **delete or move files and folders** numpy off *C:\Program Files\Derivative\TouchDesigner088\bin\Lib\site-packages* folder.
 
