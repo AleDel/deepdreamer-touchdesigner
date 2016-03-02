@@ -1,6 +1,6 @@
 # deepdreamer-touchdesigner
 
-**Deep dream with caffe and Touchdesigner**
+**Deep dream with [caffe](http://caffe.berkeleyvision.org/) and [Touchdesigner](http://www.derivative.ca/)**
 
 ![CaptureDream](http://aledel.github.io/deepdreamer-touchdesigner/images/dreamtouch.jpg)
 
