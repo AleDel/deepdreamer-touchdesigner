@@ -5,9 +5,11 @@
 ![CaptureDream](http://aledel.github.io/deepdreamer-touchdesigner/images/dreamtouch.jpg)
 
 ## Requirements
-python 3.3.5
+* python 3.3.5
 I use "anaconda" to be sure I have the most dependencies.
 TouchDesigner currently uses python 3.3.6 but work with python 3.3.5
+* gpu CUDA
+
 
 ## Setup python with Anaconda
 
