@@ -11,9 +11,13 @@ from scipy.ndimage import affine_transform, zoom
 from PIL.Image import fromarray as img_fromarray, open as img_open
 import logging
 import caffe
+'''
 logging.basicConfig(filename='log.txt', format='%(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p',
 					level=logging.NOTSET)
-
+'''
+logging.basicConfig(level=logging.DEBUG,
+                    format='[%(levelname)s] (%(threadName)-10s) %(message)s',
+                    )
 
 def _select_network(netname, toepath):
 	if netname == 'bvlc_googlenet':
@@ -122,13 +126,14 @@ def deepdream(
 		octave_n=4, octave_scale=1.4, end="inception_4c/output", clip=True,
 		network="bvlc_googlenet", gif=False, reverse=False, duration=0.1,
 		loop=False):
-
+	#logging.debug('Starting')
 	if modegpu:
 		caffe.set_mode_gpu()
 		caffe.set_device(gpudevice)
 		print("GPU mode [device id: {}]".format(gpudevice))
 		print("using GPU, but you'd still better make a cup of coffee")
 	else:
+		caffe.set_mode_cpu()
 		print("using CPU...")
 
 	img = np.float32(img_open(toepath+"actualframe.jpg"))
@@ -144,11 +149,12 @@ def deepdream(
 	img_pool = [img_path,]
 
 	# Save settings used in a log file
+	'''
 	logging.info("{} zoom={}, scale_coefficient={}, irange={}, iter_n={}, octave_n={}, octave_scale={}, end={},"\
 			"clip={}, network={}, gif={}, reverse={}, duration={}, loop={}".format(
 		img_path, zoom, scale_coefficient, irange, iter_n, octave_n, octave_scale, end, clip, network, gif, reverse,
 		duration, loop))
-
+	'''
 	print("Dreaming...")
 	for i in range(irange):
 		img = _deepdream(
@@ -157,18 +163,16 @@ def deepdream(
 		img_fromarray(np.uint8(img)).save("{}_{}.jpg".format(
 			img_path+dreamname, i))
 		if gif:
-			img_pool.append("{}_{}.jpg".format(img_path, i))
+			img_pool.append("{}_{}.jpg".format(img_path+dreamname, i))
+		
 		print("Dream layer depth {} saved.".format(i))
-		q.put([i, "{}_{}.jpg".format(img_path, i)])
-		#op('moviefileinDream').file = "{}_{}.jpg".format(img_path, i)
-		#op('tableDreamshards').appendrow([i,img_path+"_"+i+".jpg"])
-		#print("image pool: "+ img_pool)
-		print("{}_{}.jpg".format(img_path, i))
+		print("{}_{}.jpg".format(img_path+dreamname, i))
+		
+		q.put([i, "{}_{}.jpg".format(img_path+dreamname, i)])
+
 		if zoom:
 			img = affine_transform(
 				img, [1-s, 1-s, 1], [h*s/2, w*s/2, 0], order=1)
-	print("Weak up")
-	print("¡¡Awake!!")
 	if gif:
 		frames = None
 		if reverse:
@@ -179,3 +183,6 @@ def deepdream(
 			"{}.gif".format(img_path), frames, duration=duration,
 			repeat=loop)
 		print("gif created.")
+	print("Weak up")
+	print("¡¡Awake!!")
+	#logging.debug('Exiting')
