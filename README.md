@@ -1,4 +1,4 @@
-# deepdreamer-touchdesigner
+# deepdreamer-touchdesigner 088
 
 **Deep dream with [caffe](http://caffe.berkeleyvision.org/) and [Touchdesigner](http://www.derivative.ca/)**
 
@@ -37,6 +37,3 @@ you only need to add the path from the folder "pythonCaffe" to the system variab
 * Touchdesigner 088 use numpy 7 but caffe need version 9
 * **delete or move old numpy** check *C:\Program Files\Derivative\TouchDesigner088\bin\Lib\site-packages* folder.
 
-## Config Touchdesigner 099
-* configure python search module path in preferesces as in 088
-* Touchdesigner 099 no need update numpy
