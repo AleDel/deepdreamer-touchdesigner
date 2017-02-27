@@ -7,7 +7,6 @@
 ## Requirements
 * python 3.3.5
 I use "anaconda" to be sure I have the most dependencies.
-TouchDesigner currently uses python 3.3.6 but work with python 3.3.5
 * gpu CUDA
 
 
@@ -26,7 +25,7 @@ _path\to\anaconda\envs\py33\scripts_
 
 install protobuf
 ```
-pip install protobuf==3.0.0b
+pip install protobuf
 ```
 
 ## Install caffe module
