@@ -30,7 +30,7 @@ pip install protobuf
 
 ## Install caffe module
 make accesible caffe module folder to python.
-you only need to add the path to the folder "pythonCaffe" to the system variable "PYTHONPATH" or copy module to python module folder
+you only need to add the path from the folder "pythonCaffe" to the system variable "PYTHONPATH"
 
 ## Config Touchdesigner 088
 * in preferences, Python module path add path to *path/to/Anaconda/envs/py33/Lib/site-packages*.
